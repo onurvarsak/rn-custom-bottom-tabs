@@ -6,6 +6,9 @@ function TabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme()
   const { buildHref } = useLinkBuilder()
 
+  const primaryColor = "#0891b2"
+  const greyColor = "#737373"
+
   return (
     <View style={styles.tabBarContainer}>
       {state.routes.map((route, index) => {
@@ -53,7 +56,7 @@ function TabBar({ state, descriptors, navigation }) {
             style={styles.tabBarItem}
             key={route.key}
           >
-            <Text style={{ color: isFocused ? colors.primary : colors.text }}>
+            <Text style={{ color: isFocused ? primaryColor : greyColor }}>
               {label}
             </Text>
           </PlatformPressable>
