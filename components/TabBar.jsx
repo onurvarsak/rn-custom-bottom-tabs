@@ -1,19 +1,8 @@
 import { StyleSheet, View } from "react-native"
-import { useLinkBuilder, useTheme } from "@react-navigation/native"
-import { Text, PlatformPressable } from "@react-navigation/elements"
-import { AntDesign, Feather } from "@expo/vector-icons"
+import TabBarButton from "./TabBarButton"
 
 // https://reactnavigation.org/docs/bottom-tab-navigator/#props
 function TabBar({ state, descriptors, navigation }) {
-  const { buildHref } = useLinkBuilder()
-
-  const icons = {
-    index: props => <AntDesign name='home' size={26} {...props} />,
-    explore: props => <Feather name='compass' size={26} {...props} />,
-    create: props => <AntDesign name='pluscircleo' size={26} {...props} />,
-    profile: props => <AntDesign name='user' size={26} {...props} />
-  }
-
   const primaryColor = "#0891b2"
   const greyColor = "#737373"
 
@@ -54,28 +43,16 @@ function TabBar({ state, descriptors, navigation }) {
         }
 
         return (
-          <PlatformPressable
-            href={buildHref(route.name, route.params)}
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarButtonTestID}
+          <TabBarButton
+            key={route.name}
+            style={styles.tabBarItem}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={styles.tabBarItem}
-            key={route.key}
-          >
-            {icons[route.name]({
-              color: isFocused ? primaryColor : greyColor
-            })}
-            <Text
-              style={{
-                color: isFocused ? primaryColor : greyColor,
-                fontSize: 11
-              }}
-            >
-              {label}
-            </Text>
-          </PlatformPressable>
+            isFocused={isFocused}
+            routeName={route.name}
+            color={isFocused ? primaryColor : greyColor}
+            label={label}
+          />
         )
       })}
     </View>
