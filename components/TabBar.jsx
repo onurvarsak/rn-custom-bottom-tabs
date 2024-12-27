@@ -1,10 +1,18 @@
 import { StyleSheet, View } from "react-native"
 import { useLinkBuilder, useTheme } from "@react-navigation/native"
 import { Text, PlatformPressable } from "@react-navigation/elements"
+import { AntDesign, Feather } from "@expo/vector-icons"
 
+// https://reactnavigation.org/docs/bottom-tab-navigator/#props
 function TabBar({ state, descriptors, navigation }) {
-  const { colors } = useTheme()
   const { buildHref } = useLinkBuilder()
+
+  const icons = {
+    index: props => <AntDesign name='home' size={26} {...props} />,
+    explore: props => <Feather name='compass' size={26} {...props} />,
+    create: props => <AntDesign name='pluscircleo' size={26} {...props} />,
+    profile: props => <AntDesign name='user' size={26} {...props} />
+  }
 
   const primaryColor = "#0891b2"
   const greyColor = "#737373"
@@ -56,7 +64,15 @@ function TabBar({ state, descriptors, navigation }) {
             style={styles.tabBarItem}
             key={route.key}
           >
-            <Text style={{ color: isFocused ? primaryColor : greyColor }}>
+            {icons[route.name]({
+              color: isFocused ? primaryColor : greyColor
+            })}
+            <Text
+              style={{
+                color: isFocused ? primaryColor : greyColor,
+                fontSize: 11
+              }}
+            >
               {label}
             </Text>
           </PlatformPressable>
@@ -89,7 +105,8 @@ const styles = StyleSheet.create({
   tabBarItem: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    gap: 5
   }
 })
 
