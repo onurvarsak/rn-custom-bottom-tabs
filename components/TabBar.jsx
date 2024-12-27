@@ -50,7 +50,7 @@ function TabBar({ state, descriptors, navigation }) {
             testID={options.tabBarButtonTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
+            style={styles.tabBarItem}
             key={route.key}
           >
             <Text style={{ color: isFocused ? colors.primary : colors.text }}>
@@ -73,6 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: 20,
     paddingVertical: 15
+  },
+  tabBarItem: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   }
 })
 
