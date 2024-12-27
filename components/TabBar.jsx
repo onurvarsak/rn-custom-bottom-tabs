@@ -1,4 +1,4 @@
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { useLinkBuilder, useTheme } from "@react-navigation/native"
 import { Text, PlatformPressable } from "@react-navigation/elements"
 
@@ -7,7 +7,7 @@ function TabBar({ state, descriptors, navigation }) {
   const { buildHref } = useLinkBuilder()
 
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={styles.tabBarContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key]
         const label =
@@ -62,4 +62,18 @@ function TabBar({ state, descriptors, navigation }) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  tabBarContainer: {
+    position: "absolute",
+    bottom: 25,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    marginHorizontal: 20,
+    paddingVertical: 15
+  }
+})
+
 export default TabBar
