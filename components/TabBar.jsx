@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 10
-    }
+    },
+    elevation: 5
   },
   tabBarItem: {
     flex: 1,
